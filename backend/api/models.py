@@ -31,22 +31,13 @@ class EmployeePermissions(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     permission = models.ForeignKey(Permission, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.employee}: {self.permission}"
+
 class PositionEmployees(models.Model):
     position = models.ForeignKey(Position, on_delete=models.CASCADE)
     assigned_to = models.ForeignKey(Employee, on_delete=models.CASCADE)
     start_date = models.DateField(auto_now_add=True)
-
-    '''def save(self, *args, **kwargs):
-        if self.assigned_to.position_history.count() >= 12:
-            oldest_entry = self.assigned_to.position_history.first()
-            oldest_entry.delete()
-
-        if self.position.history.count() >= 12:
-            oldest_entry = self.position.history.first()
-            oldest_entry.delete()
-
-        super().save(*args, **kwargs)
-    '''
 
     def delete(self, *args, **kwargs):
         if self.assigned_to.position_history.count() >= 12:
@@ -60,3 +51,6 @@ class PositionEmployees(models.Model):
                 oldest_entry.delete()
 
         super().delete(*args, **kwargs)
+    
+    def __str__(self):
+        return f"{self.position}: {self.assigned_to}"
