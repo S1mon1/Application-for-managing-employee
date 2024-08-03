@@ -5,11 +5,17 @@ from django.db import models
 class Permission(models.Model):
     permission_name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.permission_name
+
 class Position(models.Model):
     position_name = models.CharField(max_length=100)
     description = models.TextField()
     required_permissions = models.ManyToManyField(Permission, related_name='required_by_positions')
     history = models.ManyToManyField('self', through='PositionEmployees')
+
+    def __str__(self):
+        return self.position_name
 
 class Employee(models.Model):
     first_name = models.CharField(max_length=50)
@@ -17,6 +23,9 @@ class Employee(models.Model):
     employees_permissions = models.ManyToManyField(Permission, through='EmployeePermissions')
     workable_positions = models.ManyToManyField(Position, related_name='employees')
     position_history = models.ManyToManyField('self', through='PositionEmployees')
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
 
 class EmployeePermissions(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
@@ -27,7 +36,7 @@ class PositionEmployees(models.Model):
     assigned_to = models.ForeignKey(Employee, on_delete=models.CASCADE)
     start_date = models.DateField(auto_now_add=True)
 
-    def save(self, *args, **kwargs):
+    '''def save(self, *args, **kwargs):
         if self.assigned_to.position_history.count() >= 12:
             oldest_entry = self.assigned_to.position_history.first()
             oldest_entry.delete()
@@ -37,3 +46,17 @@ class PositionEmployees(models.Model):
             oldest_entry.delete()
 
         super().save(*args, **kwargs)
+    '''
+
+    def delete(self, *args, **kwargs):
+        if self.assigned_to.position_history.count() >= 12:
+            oldest_entry = self.assigned_to.position_history.first()
+            if oldest_entry:
+                oldest_entry.delete()
+
+        if self.position.history.count() >= 12:
+            oldest_entry = self.position.history.first()
+            if oldest_entry:
+                oldest_entry.delete()
+
+        super().delete(*args, **kwargs)
