@@ -1,27 +1,28 @@
 import React, {useState, useEffect} from 'react'
+import { useParams } from 'react-router-dom'
 
-const Employee = () => {
+const Employee = ({match}) => {
 
-    let [employees, setEmployees] = useState([])
+    const {id: employeeId} = useParams()
+    const [employee, setEmployee] = useState(null)
+
 
     useEffect(() => {
-        getEmployees()
-    }, [])
+        getEmployeee()
+    }, [employeeId])
 
-    let getEmployees = async () => {
-        let response = await fetch('http://127.0.0.1:8000/api/employee/')
-        let data = await response.json()
-        console.log('DATA', data)
-        setEmployees(data)
+    const getEmployeee = async () => {
+        const response = await fetch(`http://127.0.0.1:8000/api/employee/${employeeId}/`)
+        const data = await response.json()
+        setEmployee(data)
     }
 
     return (
         <div>
-            User details
-            <div className="employees">
-                {employees.map((employee, index) => (
-                    <h3 key={index}>{employee.first_name}</h3>
-                ))}
+            <div className="employee">
+                <p>{employee?.first_name}</p>
+                <p>{employee?.last_name}</p>
+                <p>{employee?.workable_positions}</p>
             </div>
             
         </div>

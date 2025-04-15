@@ -4,5 +4,5 @@ from . import views
 urlpatterns = [
     path('', views.getRoutes, name="routes"),
     path('employee/', views.getEmployees, name="users"),
-    path('employee/<str:pk>', views.getEmployee, name="user")
+    path('employee/<str:pk>/', views.getEmployee, name="user")
 ]
