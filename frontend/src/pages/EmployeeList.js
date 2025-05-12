@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import ListEmployee from '../components/ListEmployee'
+import Navbar from '../components/Navbar'
+import './EmployeeList.css'
 
 const EmployeeList = () => {
 
@@ -17,6 +19,7 @@ const EmployeeList = () => {
 
     return (
         <div>
+            <Navbar headerText={"Employee List"}/>
             <div className="employees">
                 {employees.map((employee, index) => (
                     <ListEmployee key={index} employee={employee}/>

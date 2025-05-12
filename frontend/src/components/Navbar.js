@@ -1,14 +1,12 @@
 import react from 'react';
 import './Navbar.css';
 
-const Navbar = () => {
-  
-      return (
-          <nav className="navbar">
-              <h1>EmployessNavbar</h1>
-          </nav>
-      );
-  };
-  
+const Navbar = ({ headerText }) => {
+  return (
+    <nav className="navbar">
+      <h1>{headerText}</h1>
+    </nav>
+  );
+};
 
 export default Navbar;
