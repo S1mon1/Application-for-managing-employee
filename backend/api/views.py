@@ -27,3 +27,16 @@ def getEmployee(request, pk):
     employee = Employee.objects.get(id=pk)
     serializer = EmployeeSerializer(employee, many=False)
     return Response(serializer.data)
+
+
+@api_view(['PUT'])
+def updateEmployee(request, pk):
+    data = request.data
+    employee = Employee.objects.get(id=pk)
+    serializer = EmployeeSerializer(instance=employee, data=data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+    

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
+import UpdateButton from '../components/UpdateButton'
 
 const Employee = ({match}) => {
 
@@ -23,6 +24,7 @@ const Employee = ({match}) => {
                 <p>{employee?.first_name}</p>
                 <p>{employee?.last_name}</p>
                 <p>{employee?.workable_positions}</p>
+                <UpdateButton/>
             </div>
             
         </div>
