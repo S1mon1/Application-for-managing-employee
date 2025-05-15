@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Employee
 from .serializers import EmployeeSerializer
+from .models import Position
+from .serializers import PositionSerializer
 
 
 # Create your views here.
@@ -38,5 +40,11 @@ def updateEmployee(request, pk):
     if serializer.is_valid():
         serializer.save()
 
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def getPositions(request):
+    position = Position.objects.all()
+    serializer = PositionSerializer(position, many=True)
     return Response(serializer.data)
     

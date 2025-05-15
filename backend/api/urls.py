@@ -6,5 +6,6 @@ urlpatterns = [
     path('employee/', views.getEmployees, name="users"),
     path('employee/<str:pk>/update/', views.updateEmployee, name="update-employee"),
 
-    path('employee/<str:pk>/', views.getEmployee, name="user")
+    path('employee/<str:pk>/', views.getEmployee, name="user"),
+    path('positions/', views.getPositions, name="positions")
 ]
