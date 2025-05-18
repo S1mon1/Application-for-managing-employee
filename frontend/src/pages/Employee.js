@@ -26,10 +26,9 @@ const Employee = ({match}) => {
             <div className="employee">
                 <p>{employee?.first_name}</p>
                 <p>{employee?.last_name}</p>
-                <p>{employee?.workable_positions}</p>
+                <p>{employee?.workable_positions?.map(pos => pos.position_name).join(', ')}</p>
                 <UpdateButton/>
             </div>
-            
         </div>
     )
 }
