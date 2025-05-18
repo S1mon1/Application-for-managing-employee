@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import ListEmployee from '../components/ListEmployee'
 import Navbar from '../components/Navbar'
 import './EmployeeList.css'
+import Sidebar from '../components/Sidebar'
 
 const EmployeeList = () => {
 
@@ -20,7 +21,8 @@ const EmployeeList = () => {
     return (
         <div>
             <Navbar headerText={"Employee List"}/>
-            <div className="employees">
+            <Sidebar/>
+            <div className="main-container">
                 {employees.map((employee, index) => (
                     <ListEmployee key={index} employee={employee}/>
                 ))}

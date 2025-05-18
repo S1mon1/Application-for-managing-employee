@@ -6,4 +6,9 @@
     height: 70px;
     background-color: #007893;
     color: #CEBA46;
+    text-align: left;
+}
+
+.navbar h1{
+    margin-left: 30px;
 }

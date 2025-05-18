@@ -1,3 +1,7 @@
-.employee{
-    margin-top: 80px;
+.main-container{
+    margin-top: 70px;
+    margin-left: 250px;
+    padding: 20px;
+    height: 100vh;
+    background-color: gray;
 }

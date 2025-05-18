@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import UpdateButton from '../components/UpdateButton'
 import Navbar from '../components/Navbar'
 import './Employee.css'
+import Sidebar from '../components/Sidebar'
 
 const Employee = ({match}) => {
 
@@ -23,7 +24,8 @@ const Employee = ({match}) => {
     return (
         <div>
             <Navbar headerText={"Employee"}/>
-            <div className="employee">
+            <Sidebar/>
+            <div className="main-container">
                 <p>{employee?.first_name}</p>
                 <p>{employee?.last_name}</p>
                 <p>{employee?.workable_positions?.map(pos => pos.position_name).join(', ')}</p>

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Navbar from '../components/Navbar'
 import ListPositions from '../components/ListPositions'
 import './Positions.css'
+import Sidebar from '../components/Sidebar'
 
 const Positions = ({}) => {
 
@@ -20,7 +21,8 @@ const Positions = ({}) => {
     return (
         <div>
             <Navbar headerText={"Position List"}/>
-            <div className="positions">
+            <Sidebar/>
+            <div className="main-container">
                 
                 {positions.map((position, index) => (
                     <ListPositions key={index} position={position}/>
