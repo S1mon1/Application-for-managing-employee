@@ -5,7 +5,10 @@ import { Link } from 'react-router-dom';
 const Sidebar = () => {
   return (
     <aside className="sidebar">
-        <h3>Sidebar</h3>
+      <div className='links'>
+        <Link to={`/employees/`}>Employees</Link>
+        <Link to={`/positions/`}>Positions</Link>
+      </div>
     </aside>
   );
 };

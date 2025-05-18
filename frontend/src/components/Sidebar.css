@@ -13,3 +13,20 @@
 .sidebar h3{
     margin-left: 30px;
 }
+
+.links {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.links a{
+  color: white;
+  text-decoration: none;
+  margin-left: 30px;
+  transition: opacity 0.2s ease;
+}
+.links a:hover {
+  opacity: 0.5;
+}
