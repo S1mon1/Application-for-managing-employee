@@ -4,8 +4,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Employee
 from .serializers import EmployeeSerializer
-from .models import Position
-from .serializers import PositionSerializer
+from .models import Position, Permission
+from .serializers import PositionSerializer, PermissionSerializer
 
 
 # Create your views here.
@@ -54,3 +54,8 @@ def getPosition(request, pk):
     serializer = PositionSerializer(position, many=False)
     return Response(serializer.data)
     
+@api_view(['GET'])
+def getPermissions(request):
+    permission = Permission.objects.all()
+    serializer = PermissionSerializer(permission, many=True)
+    return Response(serializer.data)

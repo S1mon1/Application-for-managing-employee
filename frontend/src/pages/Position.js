@@ -25,6 +25,7 @@ const Position = ({}) => {
             <div className="main-container">
                 <p>{position?.position_name}</p>
                 <p>{position?.description}</p>
+                <p>{position?.required_permissions}</p>
             </div>
         </div>
     )

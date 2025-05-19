@@ -8,5 +8,6 @@ urlpatterns = [
 
     path('employee/<str:pk>/', views.getEmployee, name="user"),
     path('positions/', views.getPositions, name="positions"),
-    path('positions/<str:pk>/', views.getPosition, name="position")
+    path('positions/<str:pk>/', views.getPosition, name="position"),
+    path('permissions/', views.getPermissions, name="permissions")
 ]

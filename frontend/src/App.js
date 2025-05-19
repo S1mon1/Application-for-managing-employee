@@ -2,16 +2,15 @@ import {
   BrowserRouter as Router,
   Routes,
   Route
-} from "react-router-dom";
+} from "react-router-dom"
 
-import EmployeeList from "./pages/EmployeeList";
-
-import Employee from './pages/Employee'
-import Navbar from './components/Navbar'
 import './App.css';
-import UpdateEmployee from "./pages/UpdateEmployee";
-import Positions from "./pages/Positions";
-import Position from "./pages/Position";
+import EmployeeList from "./pages/EmployeeList"
+import Employee from "./pages/Employee"
+import UpdateEmployee from "./pages/UpdateEmployee"
+import Positions from "./pages/Positions"
+import Position from "./pages/Position"
+import Permissions from "./pages/Permissions"
 
 function App() {
   return (
@@ -25,6 +24,7 @@ function App() {
           <Route path="/employee/:id/updateEmployee" element={<UpdateEmployee/>}/>
           <Route path="/positions" element={<Positions/>}/>
           <Route path="/positions/:id" element={<Position/>}/>
+          <Route path="/permissions" element={<Permissions/>}/>
         </Routes>
       </div>
     </Router>
