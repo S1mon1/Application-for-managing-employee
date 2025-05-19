@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import './UpdateEmployee.css'
+import Sidebar from '../components/Sidebar'
 
 const UpdateEmployee = () => {
     const { id: employeeId } = useParams();
@@ -40,29 +43,34 @@ const UpdateEmployee = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Imię:</label>
-                <input
-                    type="text"
-                    name="first_name"
-                    value={employee.first_name}
-                    onChange={handleInputChange}
-                    required
-                />
-            </div>
-            <div>
-                <label>Nazwisko:</label>
-                <input
-                    type="text"
-                    name="last_name"
-                    value={employee.last_name}
-                    onChange={handleInputChange}
-                    required
-                />
-            </div>
-            <button type="submit">Zapisz zmiany</button>
-        </form>
+        <div className='main-container'>
+            <Navbar headerText={"Edit Employee"}/>
+            <Sidebar/>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Imię:</label>
+                    <input
+                        type="text"
+                        name="first_name"
+                        value={employee.first_name}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Nazwisko:</label>
+                    <input
+                        type="text"
+                        name="last_name"
+                        value={employee.last_name}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
+                <button type="submit">Zapisz zmiany</button>
+            </form>
+
+        </div>
     );
 };
 
