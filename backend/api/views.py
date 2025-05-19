@@ -47,4 +47,10 @@ def getPositions(request):
     position = Position.objects.all()
     serializer = PositionSerializer(position, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def getPosition(request, pk):
+    position = Position.objects.get(id=pk)
+    serializer = PositionSerializer(position, many=False)
+    return Response(serializer.data)
     

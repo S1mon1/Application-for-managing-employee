@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 
 const ListPositions = ({position}) => {
     return(
-        <div>
+        <Link to={`/positions/${position.id}`}>
             <h3>{position.position_name}</h3>
-        </div>
+        </Link>
     )
 }
 
