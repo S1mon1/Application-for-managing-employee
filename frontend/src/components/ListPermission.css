@@ -1,4 +1,4 @@
-.permission{
+.permissionLink{
     text-decoration: none;
     background-color: #333;
     color: white;
@@ -6,6 +6,6 @@
     padding: 10px;
 }
 
-.permission:hover{
+.permissionLink:hover{
     filter: brightness(1.4);
 }

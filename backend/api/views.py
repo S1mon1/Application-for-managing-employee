@@ -59,3 +59,9 @@ def getPermissions(request):
     permission = Permission.objects.all()
     serializer = PermissionSerializer(permission, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def getPermisson(request, pk):
+    permission = Permission.objects.get(id=pk)
+    serializer = PermissionSerializer(permission, many=False)
+    return Response(serializer.data)

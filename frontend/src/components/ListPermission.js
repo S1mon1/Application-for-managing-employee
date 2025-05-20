@@ -1,10 +1,13 @@
+import { Link } from 'react-router-dom'
 import './ListPermission.css'
 
 const ListPermission = ({permission}) => {
     return(
-        <span className="permission">
-            <h3>{permission.permission_name}</h3>
-        </span>
+        <Link to={`/permissions/${permission.id}`} className="permissionLink">
+            <span className="permissionName">
+                {permission.permission_name}
+            </span>
+        </Link>
     )
 }
 
