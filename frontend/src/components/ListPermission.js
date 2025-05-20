@@ -1,9 +1,10 @@
+import './ListPermission.css'
 
 const ListPermission = ({permission}) => {
     return(
-        <div>
+        <span className="permission">
             <h3>{permission.permission_name}</h3>
-        </div>
+        </span>
     )
 }
 

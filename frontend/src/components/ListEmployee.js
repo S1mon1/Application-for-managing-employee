@@ -1,11 +1,12 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
+import './ListEmployee.css'
 
 const ListEmployee = ({employee}) => {
     return(
-        <Link to={`/employee/${employee.id}`}>
-            <h3>{employee.first_name}</h3>
-            <h3>{employee.last_name}</h3>
+        <Link to={`/employee/${employee.id}`} className="employeeLink">
+            <span className="employeeName">
+                {employee.first_name} {employee.last_name}
+            </span>
         </Link>
     )
 }

@@ -1,4 +1,4 @@
-.employeeLink{
+.positionLink{
     text-decoration: none;
     background-color: #333;
     color: white;
@@ -6,6 +6,6 @@
     padding: 10px;
 }
 
-.employeeLink:hover{
+.positionLink:hover{
     filter: brightness(1.4);
 }
