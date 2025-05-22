@@ -10,6 +10,7 @@ urlpatterns = [
 
     path('positions/', views.getPositions, name="positions"),
     path('positions/<str:pk>/', views.getPosition, name="position"),
+    path('positions/<str:pk>/update/', views.updatePosition, name="update-position"),
 
     path('permissions/', views.getPermissions, name="permissions"),
     path('permissions/<str:pk>/', views.getPermisson, name="permission")

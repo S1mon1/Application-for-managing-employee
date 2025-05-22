@@ -10,8 +10,10 @@ import Employee from "./pages/Employee"
 import UpdateEmployee from "./pages/UpdateEmployee"
 import Positions from "./pages/Positions"
 import Position from "./pages/Position"
+import UpdatePosition from "./pages/UpdatePoisiton"
 import Permissions from "./pages/Permissions"
 import Permission from "./pages/Permission"
+
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
           <Route path="/employee/:id/updateEmployee" element={<UpdateEmployee/>}/>
           <Route path="/positions" element={<Positions/>}/>
           <Route path="/positions/:id" element={<Position/>}/>
+          <Route path="/positions/:id/updatePosition" element={<UpdatePosition/>}/>
           <Route path="/permissions" element={<Permissions/>}/>
           <Route path="/permissions/:id" element={<Permission/>}/>
         </Routes>

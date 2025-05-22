@@ -53,6 +53,17 @@ def getPosition(request, pk):
     position = Position.objects.get(id=pk)
     serializer = PositionSerializer(position, many=False)
     return Response(serializer.data)
+
+@api_view(['PUT'])
+def updatePosition(request, pk):
+    data = request.data
+    position = Position.objects.get(id=pk)
+    serializer = PositionSerializer(instance=position, data=data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
     
 @api_view(['GET'])
 def getPermissions(request):

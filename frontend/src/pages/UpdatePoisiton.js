@@ -1,68 +1,66 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
-import './UpdateEmployee.css'
 import Sidebar from '../components/Sidebar'
 
-const UpdateEmployee = () => {
-    const { id: employeeId } = useParams()
-    const [employee, setEmployee] = useState({
-        first_name: '',
-        last_name: ''
+const UpdatePosition = () => {
+    const { id: positionId } = useParams()
+    const [position, setPosition] = useState({
+        position_name: '',
+        description: ''
     })
     const navigate = useNavigate()
 
-    const getEmployee = async () => {
-        const response = await fetch(`http://127.0.0.1:8000/api/employee/${employeeId}/`)
+    const getPosition = useCallback (async () => {
+        const response = await fetch(`http://127.0.0.1:8000/api/positions/${positionId}/`)
         const data = await response.json()
-        setEmployee(data)
-    };
+        setPosition(data)
+    }, [positionId])
 
     useEffect(() => {
-        getEmployee()
-    }, [employeeId])
+        getPosition()
+    }, [positionId, getPosition])
 
     const handleInputChange = (event) => {
         const { name, value } = event.target
-        setEmployee(prev => ({
-            ...prev,
-            [name]: value
+        setPosition(prev => ({
+            ...prev, [name]: value
         }))
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        await fetch(`http://127.0.0.1:8000/api/employee/${employeeId}/update/`, {
+        await fetch (`http://127.0.0.1:8000/api/positions/${positionId}/update/`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(employee)
+            body: JSON.stringify(position)
         })
-        navigate(`/employee/${employeeId}`)
+        navigate(`/positions/${positionId}`)
     }
 
     return (
         <div className='main-container'>
-            <Navbar headerText={"Edit Employee"}/>
+            <Navbar headerText={"Edit Position"}/>
             <Sidebar/>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Imię:</label>
+                    <label>Stanowisko:</label>
                     <input
                         type="text"
-                        name="first_name"
-                        value={employee.first_name}
+                        name="position_name"
+                        value={position.position_name}
                         onChange={handleInputChange}
                         required
                     />
                 </div>
                 <div>
-                    <label>Nazwisko:</label>
+                    <label>Opis stanowiska:</label>
                     <input
                         type="text"
-                        name="last_name"
-                        value={employee.last_name}
+                        name="description"
+                        value={position.description}
                         onChange={handleInputChange}
                         required
                     />
@@ -74,4 +72,4 @@ const UpdateEmployee = () => {
     )
 }
 
-export default UpdateEmployee
+export default UpdatePosition
