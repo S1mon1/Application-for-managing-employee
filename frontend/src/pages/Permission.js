@@ -24,7 +24,6 @@ const Permission = ({}) => {
             <Sidebar/>
             <div className="main-container">
                 <p>{permission?.permission_name}</p>
-                
             </div>
         </div>
     )

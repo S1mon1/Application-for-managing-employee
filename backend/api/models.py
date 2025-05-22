@@ -20,8 +20,8 @@ class Position(models.Model):
 class Employee(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    employees_permissions = models.ManyToManyField(Permission, through='EmployeePermissions')
-    workable_positions = models.ManyToManyField(Position, related_name='employees')
+    employees_permissions = models.ManyToManyField(Permission, through='EmployeePermissions', null=True, blank=True)
+    workable_positions = models.ManyToManyField(Position, related_name='employees', null=True, blank=True)
     position_history = models.ManyToManyField('self', through='PositionEmployees')
 
     def __str__(self):
