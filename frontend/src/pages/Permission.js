@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
+import PermissionUpdateButton from '../components/PermissionUpdateButton'
 
 const Permission = ({}) => {
 
@@ -24,6 +25,7 @@ const Permission = ({}) => {
             <Sidebar/>
             <div className="main-container">
                 <p>{permission?.permission_name}</p>
+                <PermissionUpdateButton/>
             </div>
         </div>
     )

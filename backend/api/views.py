@@ -76,3 +76,14 @@ def getPermisson(request, pk):
     permission = Permission.objects.get(id=pk)
     serializer = PermissionSerializer(permission, many=False)
     return Response(serializer.data)
+
+@api_view(['PUT'])
+def updatePermission(request, pk):
+    data = request.data
+    permission = Permission.objects.get(id=pk)
+    serializer = PermissionSerializer(instance=permission, data=data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
