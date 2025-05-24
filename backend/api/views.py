@@ -6,6 +6,7 @@ from .models import Employee
 from .serializers import EmployeeSerializer
 from .models import Position, Permission
 from .serializers import PositionSerializer, PermissionSerializer
+from rest_framework import status
 
 
 # Create your views here.
@@ -64,6 +65,12 @@ def updatePosition(request, pk):
         serializer.save()
 
     return Response(serializer.data)
+
+@api_view(['DELETE'])
+def deletePosition(request, pk):
+    position = Position.objects.get(id=pk)
+    position.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
     
 @api_view(['GET'])
 def getPermissions(request):

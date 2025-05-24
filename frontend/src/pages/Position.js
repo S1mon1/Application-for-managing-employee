@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
 import PositionUpdateButton from '../components/PositionUpdateButton'
+import DeleteButton from '../components/DeleteButton'
 
 const Position = ({}) => {
 
@@ -28,6 +29,7 @@ const Position = ({}) => {
                 <p>{position?.description}</p>
                 <p>{position?.required_permissions}</p>
                 <PositionUpdateButton/>
+                 <DeleteButton deletePath={`http://127.0.0.1:8000/api/positions/${positionId}/delete/`} pathUrl="/positions"/>
             </div>
         </div>
     )
