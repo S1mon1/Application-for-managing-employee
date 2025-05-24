@@ -16,5 +16,6 @@ urlpatterns = [
 
     path('permissions/', views.getPermissions, name="permissions"),
     path('permissions/<str:pk>/', views.getPermisson, name="permission"),
-    path('permissions/<str:pk>/update/', views.updatePermission, name="update-permission")
+    path('permissions/<str:pk>/update/', views.updatePermission, name="update-permission"),
+    path('permissions/<str:pk>/delete/', views.deletePermission, name="delete-permission")
 ]

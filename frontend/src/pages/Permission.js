@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
 import PermissionUpdateButton from '../components/PermissionUpdateButton'
+import DeleteButton from '../components/DeleteButton'
 
 const Permission = ({}) => {
 
@@ -26,6 +27,8 @@ const Permission = ({}) => {
             <div className="main-container">
                 <p>{permission?.permission_name}</p>
                 <PermissionUpdateButton/>
+                <DeleteButton deletePath={`http://127.0.0.1:8000/api/permissions/${permissionId}/delete/`} pathUrl="/permissions"/>
+                
             </div>
         </div>
     )

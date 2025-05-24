@@ -100,3 +100,9 @@ def updatePermission(request, pk):
         serializer.save()
 
     return Response(serializer.data)
+
+@api_view(['DELETE'])
+def deletePermission(request, pk):
+    permission = Permission.objects.get(id=pk)
+    permission.delete()
+    return Response(status.HTTP_204_NO_CONTENT)
