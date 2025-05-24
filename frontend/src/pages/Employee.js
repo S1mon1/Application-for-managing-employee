@@ -4,6 +4,7 @@ import EmployeeUpdateButton from '../components/EmployeeUpdateButton'
 import Navbar from '../components/Navbar'
 import './Employee.css'
 import Sidebar from '../components/Sidebar'
+import DeleteButton from '../components/DeleteButton'
 
 const Employee = ({match}) => {
 
@@ -30,6 +31,7 @@ const Employee = ({match}) => {
                 <p>{employee?.last_name}</p>
                 <p>{employee?.workable_positions?.map(pos => pos.position_name).join(', ')}</p>
                 <EmployeeUpdateButton/>
+                <DeleteButton deletePath={`http://127.0.0.1:8000/api/employee/${employeeId}/delete`} pathUrl="/employees"/>
             </div>
         </div>
     )

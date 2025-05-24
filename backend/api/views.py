@@ -43,6 +43,12 @@ def updateEmployee(request, pk):
 
     return Response(serializer.data)
 
+@api_view(['DELETE'])
+def deleteEmployee(request, pk):
+    employee = Employee.objects.get(id=pk)
+    employee.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
 @api_view(['GET'])
 def getPositions(request):
     position = Position.objects.all()
