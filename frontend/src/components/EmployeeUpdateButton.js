@@ -7,7 +7,7 @@ const EmployeeUpdateButton = () => {
         <Link to={`/employee/${employeeId}/updateEmployee`}>
             Edytuj
         </Link>
-    );
-};
+    )
+}
 
 export default EmployeeUpdateButton;

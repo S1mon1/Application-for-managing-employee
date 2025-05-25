@@ -30,3 +30,7 @@
 .links a:hover {
   opacity: 0.5;
 }
+
+.addEmployee{
+  font-size: 11px;
+}

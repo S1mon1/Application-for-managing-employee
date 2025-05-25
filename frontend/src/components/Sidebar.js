@@ -7,6 +7,7 @@ const Sidebar = () => {
     <aside className="sidebar">
       <div className='links'>
         <Link to={`/employees/`}>Employees</Link>
+        <Link to={`/employees/addEmployee/`} className='addEmployee'>Add Employee</Link>
         <Link to={`/positions/`}>Positions</Link>
         <Link to={`/permissions/`}>Permissions</Link>
       </div>
