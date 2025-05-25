@@ -31,18 +31,30 @@ def getEmployee(request, pk):
     serializer = EmployeeSerializer(employee, many=False)
     return Response(serializer.data)
 
-
 @api_view(['PUT'])
 def updateEmployee(request, pk):
-    data = request.data
-    employee = Employee.objects.get(id=pk)
-    serializer = EmployeeSerializer(instance=employee, data=data)
+    try:
+        employee = Employee.objects.get(id=pk)
+        serializer = EmployeeSerializer(instance=employee, data=request.data)
+        
+        if serializer.is_valid():
+            employee = serializer.save()
 
-    if serializer.is_valid():
-        serializer.save()
-
-    return Response(serializer.data)
-
+            position_ids = request.data.get('workable_positions', [])
+            
+            if not position_ids:
+                employee.workable_positions.clear()
+            else:
+                positions = Position.objects.filter(id__in=position_ids)
+                employee.workable_positions.set(positions)
+            
+            return Response(serializer.data)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
 @api_view(['DELETE'])
 def deleteEmployee(request, pk):
     employee = Employee.objects.get(id=pk)

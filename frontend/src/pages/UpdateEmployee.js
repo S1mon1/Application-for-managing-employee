@@ -10,16 +10,25 @@ const UpdateEmployee = () => {
         first_name: '',
         last_name: ''
     })
+
+    const [positions, setPositions] = useState([])
+    const [selectedPositions, setSelectedPositions] = useState([])
     const navigate = useNavigate()
 
-    const getEmployee = async () => {
-        const response = await fetch(`http://127.0.0.1:8000/api/employee/${employeeId}/`)
-        const data = await response.json()
-        setEmployee(data)
-    };
-
     useEffect(() => {
-        getEmployee()
+        const fetchEmployee = async () => {
+
+            const response = await fetch(`http://127.0.0.1:8000/api/employee/${employeeId}/`)
+            const data = await response.json()
+
+            const positionsResponse = await fetch(`http://127.0.0.1:8000/api/positions/`)
+            const positionsData = await positionsResponse.json()
+
+            setEmployee(data)
+            setPositions(positionsData)
+            setSelectedPositions(data.workable_positions.map(p => p.id))
+        }
+        fetchEmployee()
     }, [employeeId])
 
     const handleInputChange = (event) => {
@@ -30,15 +39,27 @@ const UpdateEmployee = () => {
         }))
     }
 
+    const handlePositionChange = (positionId) => {
+        setSelectedPositions(prev => prev.includes(positionId)
+        ? prev.filter(id => id !== positionId)
+        : [...prev, positionId]
+        )
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault()
-        await fetch(`http://127.0.0.1:8000/api/employee/${employeeId}/update/`, {
+        const updateResponse = await fetch(`http://127.0.0.1:8000/api/employee/${employeeId}/update/`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(employee)
+            body: JSON.stringify({
+                ...employee,
+                workable_positions: selectedPositions
+            })
         })
+
+        const updatedData = await updateResponse.json()
         navigate(`/employee/${employeeId}`)
     }
 
@@ -48,7 +69,7 @@ const UpdateEmployee = () => {
             <Sidebar/>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Imię:</label>
+                    <label>First name:</label>
                     <input
                         type="text"
                         name="first_name"
@@ -58,7 +79,7 @@ const UpdateEmployee = () => {
                     />
                 </div>
                 <div>
-                    <label>Nazwisko:</label>
+                    <label>Last name:</label>
                     <input
                         type="text"
                         name="last_name"
@@ -66,6 +87,23 @@ const UpdateEmployee = () => {
                         onChange={handleInputChange}
                         required
                     />
+                </div>
+                <div className="position-section">
+                    <h3>Position:</h3>
+                    {positions.map(position => (
+                        <div key={position.id} className="position-item">
+                            <input
+                            type="checkbox"
+                            id={`position-${position.id}`}
+                            checked={selectedPositions.includes(position.id)}
+                            onChange={() => handlePositionChange(position.id)}
+                            />
+                            <label htmlFor={`position-${position.id}`}>
+                                {position.position_name || `Position ${position.id}`}
+                            </label>
+                        </div>
+                            
+                    ))}
                 </div>
                 <button type="submit">Zapisz zmiany</button>
             </form>
