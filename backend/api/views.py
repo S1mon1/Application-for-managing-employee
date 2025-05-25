@@ -52,9 +52,14 @@ def deleteEmployee(request, pk):
 @api_view(['POST'])
 def addEmployee(request):
     serializer = EmployeeSerializer(data=request.data)
-
     if serializer.is_valid():
-        serializer.save()
+        employee = serializer.save()
+        
+        position_ids = request.data.get('workable_positions', [])
+        positions = Position.objects.filter(id__in=position_ids)
+        
+        employee.workable_positions.set(positions)
+        
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
