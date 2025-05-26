@@ -48,7 +48,7 @@ const UpdateEmployee = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const updateResponse = await fetch(`http://127.0.0.1:8000/api/employee/${employeeId}/update/`, {
+        await fetch(`http://127.0.0.1:8000/api/employee/${employeeId}/update/`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -59,7 +59,6 @@ const UpdateEmployee = () => {
             })
         })
 
-        const updatedData = await updateResponse.json()
         navigate(`/employee/${employeeId}`)
     }
 
@@ -105,7 +104,7 @@ const UpdateEmployee = () => {
                             
                     ))}
                 </div>
-                <button type="submit">Zapisz zmiany</button>
+                <button type="submit">Save</button>
             </form>
 
         </div>

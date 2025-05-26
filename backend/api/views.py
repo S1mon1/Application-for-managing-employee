@@ -105,14 +105,27 @@ def getPosition(request, pk):
 
 @api_view(['PUT'])
 def updatePosition(request, pk):
-    data = request.data
-    position = Position.objects.get(id=pk)
-    serializer = PositionSerializer(instance=position, data=data)
+    try:
+        position = Position.objects.get(id=pk)
+        serializer = PositionSerializer(instance=position, data=request.data)
+        
+        if serializer.is_valid():
+            position = serializer.save()
 
-    if serializer.is_valid():
-        serializer.save()
-
-    return Response(serializer.data)
+            permission_ids = request.data.get('required_permissions', [])
+            
+            if not permission_ids:
+                position.required_permissions.clear()
+            else:
+                permission = Permission.objects.filter(id__in=permission_ids)
+                position.required_permissions.set(permission)
+            
+            return Response(serializer.data)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['DELETE'])
 def deletePosition(request, pk):
