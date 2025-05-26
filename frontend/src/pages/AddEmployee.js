@@ -64,7 +64,7 @@ const AddEmployee = () => {
 
     return (
         <div className='main-container'>
-            <Navbar headerText={"NewEmployee"}/>
+            <Navbar headerText={"New Employee"}/>
             <Sidebar/>
             <form onSubmit={handleSubmit}>
                 <div>

@@ -31,10 +31,7 @@
   opacity: 0.5;
 }
 
-.addEmployee{
+.addElement{
   font-size: 11px;
-}
-
-.addPermission{
-  font-size: 11px;
+  margin-bottom: 20px;
 }

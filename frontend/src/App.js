@@ -13,9 +13,10 @@ import Position from "./pages/Position"
 import UpdatePosition from "./pages/UpdatePoisiton"
 import Permissions from "./pages/Permissions"
 import Permission from "./pages/Permission"
-import UpdatePermission from "./pages/UpdatePermission";
-import AddEmployee from "./pages/AddEmployee";
-import AddPermission from "./pages/AddPermission";
+import UpdatePermission from "./pages/UpdatePermission"
+import AddEmployee from "./pages/AddEmployee"
+import AddPermission from "./pages/AddPermission"
+import AddPosition from "./pages/AddPosition"
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/positions" element={<Positions/>}/>
           <Route path="/positions/:id" element={<Position/>}/>
           <Route path="/positions/:id/updatePosition" element={<UpdatePosition/>}/>
+          <Route path="positions/addPosition" element={<AddPosition/>}/>
 
           <Route path="/permissions" element={<Permissions/>}/>
           <Route path="/permissions/:id" element={<Permission/>}/>
