@@ -111,6 +111,16 @@ def getPermissions(request):
     serializer = PermissionSerializer(permission, many=True)
     return Response(serializer.data)
 
+@api_view(['POST'])
+def addPermission(request):
+    serializer = PermissionSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 @api_view(['GET'])
 def getPermisson(request, pk):
     permission = Permission.objects.get(id=pk)
