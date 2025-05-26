@@ -11,6 +11,7 @@ urlpatterns = [
     path('employees/addEmployee/', views.addEmployee, name="add-employee"),
 
     path('positions/', views.getPositions, name="positions"),
+    path('positions/add/', views.addPosition, name="add-position"),
     path('positions/<str:pk>/', views.getPosition, name="position"),
     path('positions/<str:pk>/update/', views.updatePosition, name="update-position"),
     path('positions/<str:pk>/delete/', views.deletePosition, name="delete-position"),

@@ -82,6 +82,21 @@ def getPositions(request):
     serializer = PositionSerializer(position, many=True)
     return Response(serializer.data)
 
+@api_view(['POST'])
+def addPosition(request):
+    serializer = PositionSerializer(data=request.data)
+    if serializer.is_valid():
+        position = serializer.save()
+        
+        permission_ids = request.data.get('required_permissions', [])
+        permissions = Permission.objects.filter(id__in=permission_ids)
+        
+        position.required_permissions.set(permissions)
+        
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 @api_view(['GET'])
 def getPosition(request, pk):
     position = Position.objects.get(id=pk)

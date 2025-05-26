@@ -11,7 +11,7 @@ class Permission(models.Model):
 class Position(models.Model):
     position_name = models.CharField(max_length=100)
     description = models.TextField()
-    required_permissions = models.ManyToManyField(Permission, related_name='required_by_positions')
+    required_permissions = models.ManyToManyField(Permission, related_name='required_by_positions', null=True, blank=True)
     history = models.ManyToManyField('self', through='PositionEmployees')
 
     def __str__(self):
