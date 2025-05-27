@@ -4,8 +4,8 @@ const PositionUpdateButton = () => {
     const { id: positionId } = useParams()
 
     return (
-        <Link to={`/positions/${positionId}/updatePosition`}>
-            Edytuj
+        <Link className='button-style' to={`/positions/${positionId}/updatePosition`}>
+            Edit
         </Link>
     )
 }

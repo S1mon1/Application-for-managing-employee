@@ -4,11 +4,9 @@ const PermissionUpdateButton = () => {
     const { id: permissionId } = useParams()
 
     return (
-        <div>
-        <Link to={`/permissions/${permissionId}/updatePermission`}>
-            Edytuj
+        <Link className='button-style' to={`/permissions/${permissionId}/updatePermission`}>
+            Edit
         </Link>
-        </div>
     )
 }
 

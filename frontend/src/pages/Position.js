@@ -29,7 +29,7 @@ const Position = ({}) => {
                 <p>{position?.description}</p>
                 <p>{position?.required_permissions?.map(per => per.permission_name).join(', ')}</p>
                 <PositionUpdateButton/>
-                 <DeleteButton deletePath={`http://127.0.0.1:8000/api/positions/${positionId}/delete/`} pathUrl="/positions"/>
+                <DeleteButton deletePath={`http://127.0.0.1:8000/api/positions/${positionId}/delete/`} pathUrl="/positions"/>
             </div>
         </div>
     )

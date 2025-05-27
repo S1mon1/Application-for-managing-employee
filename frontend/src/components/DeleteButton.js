@@ -28,7 +28,7 @@ const DeleteButton = ({ deletePath, pathUrl }) => {
     }   
 
     return (
-        <button type="button" onClick={handleDelete} className="delete-button">
+        <button className='button-style' type="button" onClick={handleDelete}>
             Delete
         </button>
     )
