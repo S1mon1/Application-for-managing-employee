@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import './UpdateEmployee.css'
 import Sidebar from '../components/Sidebar'
+import "./AddEmployee.css"
 
 const UpdateEmployee = () => {
     const { id: employeeId } = useParams()
@@ -102,10 +103,11 @@ const UpdateEmployee = () => {
                         required
                     />
                 </div>
-                <div className="position-section">
+                <div className="positions-section">
                     <h3>Position:</h3>
+                    <div className="position-checkbox">
                     {positions.map(position => (
-                        <div key={position.id} className="position-item">
+                        <div key={position.id} className="checkbox-item">
                             <input
                             type="checkbox"
                             id={`position-${position.id}`}
@@ -115,14 +117,15 @@ const UpdateEmployee = () => {
                             <label htmlFor={`position-${position.id}`}>
                                 {position.position_name || `Position ${position.id}`}
                             </label>
-                        </div>
-                            
+                        </div> 
                     ))}
+                    </div>
                 </div>
-                <div className="permission-section">
+                <div className="permissions-section">
                     <h3>Permission:</h3>
+                    <div className="permission-checkbox">
                     {permissions.map(permission => (
-                        <div key={permission.id} className="permission-item">
+                        <div key={permission.id} className="checkbox-item">
                             <input
                             type="checkbox"
                             id={`permission-${permission.id}`}
@@ -133,8 +136,8 @@ const UpdateEmployee = () => {
                                 {permission.permission_name || `Permission ${permission.id}`}
                             </label>
                         </div>
-                            
                     ))}
+                    </div>
                 </div>
                 <button type="submit">Save</button>
             </form>

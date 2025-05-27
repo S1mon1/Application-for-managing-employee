@@ -120,12 +120,12 @@ const AddEmployee = () => {
                     )}
                 </div>
                 <div className={`input-container ${errors.last_name ? 'error' : ''}`}>
-                    <label>Last name:</label>
+                    <label>Last name</label>
                     <input
                         type="text"
                         name="last_name"
                         value={employee.last_name}
-                        onChange={handleCheckboxChange}
+                        onChange={handleInputChange}
                     />
                     {errors.last_name && (
                       <span className='error-message'>This field is required</span>
