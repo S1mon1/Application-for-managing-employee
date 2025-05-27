@@ -15,6 +15,7 @@ class PositionSerializer(ModelSerializer):
 
 class EmployeeSerializer(ModelSerializer):
     workable_positions = PositionSerializer(many = True, read_only = True)
+    employees_permissions = PermissionSerializer(many=True, read_only=True)
 
     class Meta:
         model = Employee

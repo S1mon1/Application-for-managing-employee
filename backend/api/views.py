@@ -41,12 +41,19 @@ def updateEmployee(request, pk):
             employee = serializer.save()
 
             position_ids = request.data.get('workable_positions', [])
+            permission_ids = request.data.get('employees_permissions', [])
             
             if not position_ids:
                 employee.workable_positions.clear()
             else:
                 positions = Position.objects.filter(id__in=position_ids)
                 employee.workable_positions.set(positions)
+
+            if not permission_ids:
+                employee.employees_permissions.clear()
+            else:
+                permissions = Permission.objects.filter(id__in=permission_ids)
+                employee.employees_permissions.set(permissions)
             
             return Response(serializer.data)
         
@@ -66,11 +73,15 @@ def addEmployee(request):
     serializer = EmployeeSerializer(data=request.data)
     if serializer.is_valid():
         employee = serializer.save()
+        position = serializer.save()
         
         position_ids = request.data.get('workable_positions', [])
         positions = Position.objects.filter(id__in=position_ids)
-        
         employee.workable_positions.set(positions)
+
+        permission_ids = request.data.get('employees_permissions', [])
+        permissions = Permission.objects.filter(id__in=permission_ids)
+        position.employees_permissions.set(permissions)
         
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     

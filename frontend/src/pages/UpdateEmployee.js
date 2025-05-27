@@ -13,6 +13,8 @@ const UpdateEmployee = () => {
 
     const [positions, setPositions] = useState([])
     const [selectedPositions, setSelectedPositions] = useState([])
+    const [permissions, setPermissions] = useState([])
+    const [selectedPermissions, setSelectedPermissions] = useState([])
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -24,9 +26,14 @@ const UpdateEmployee = () => {
             const positionsResponse = await fetch(`http://127.0.0.1:8000/api/positions/`)
             const positionsData = await positionsResponse.json()
 
+            const permissionsResponse = await fetch(`http://127.0.0.1:8000/api/permissions/`)
+            const permissionData = await permissionsResponse.json()
+
             setEmployee(data)
             setPositions(positionsData)
             setSelectedPositions(data.workable_positions.map(p => p.id))
+            setPermissions(permissionData)
+            setSelectedPermissions(data.employees_permissions.map(per => per.id))
         }
         fetchEmployee()
     }, [employeeId])
@@ -46,6 +53,13 @@ const UpdateEmployee = () => {
         )
     }
 
+    const handlePermissionChange = (permissionId) => {
+        setSelectedPermissions(prev => prev.includes(permissionId)
+        ? prev.filter(id => id !== permissionId)
+        : [...prev, permissionId]
+        )
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault()
         await fetch(`http://127.0.0.1:8000/api/employee/${employeeId}/update/`, {
@@ -55,7 +69,8 @@ const UpdateEmployee = () => {
             },
             body: JSON.stringify({
                 ...employee,
-                workable_positions: selectedPositions
+                workable_positions: selectedPositions,
+                employees_permissions: selectedPermissions
             })
         })
 
@@ -99,6 +114,23 @@ const UpdateEmployee = () => {
                             />
                             <label htmlFor={`position-${position.id}`}>
                                 {position.position_name || `Position ${position.id}`}
+                            </label>
+                        </div>
+                            
+                    ))}
+                </div>
+                <div className="permission-section">
+                    <h3>Permission:</h3>
+                    {permissions.map(permission => (
+                        <div key={permission.id} className="permission-item">
+                            <input
+                            type="checkbox"
+                            id={`permission-${permission.id}`}
+                            checked={selectedPermissions.includes(permission.id)}
+                            onChange={() => handlePermissionChange(permission.id)}
+                            />
+                            <label htmlFor={`permission-${permission.id}`}>
+                                {permission.permission_name || `Permission ${permission.id}`}
                             </label>
                         </div>
                             

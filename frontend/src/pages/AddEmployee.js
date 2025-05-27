@@ -8,10 +8,12 @@ const AddEmployee = () => {
     const [employee, setEmployee] = useState({
         first_name: '',
         last_name: '',
-        workable_positions: []
+        workable_positions: [],
+        employees_permissions: []
     })
 
     const [positions, setPositions] = useState([])
+    const [permissions, setPermissions] = useState([])
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -20,9 +22,15 @@ const AddEmployee = () => {
             const data = await response.json()
             setPositions(data)
         }
+        const fetchPermissions = async () => {
+            const responsePermission = await fetch(`http://127.0.0.1:8000/api/permissions/`)
+            const dataPermission = await responsePermission.json()
+            setPermissions(dataPermission)
+        }
 
         fetchPositions()
-    }, [])
+        fetchPermissions()
+    }, [], [])
 
     const handleInputChange = (event) => {
         const {name, value} = event.target
@@ -46,6 +54,20 @@ const AddEmployee = () => {
         })
     }
 
+    const handleCheckboxChangePermission = (event) => {
+        const permissionId = parseInt(event.target.value)
+        setEmployee(prev => {
+            const updatePermission = prev.employees_permissions.includes(permissionId)
+            ? prev.employees_permissions.filter(pos => pos !== permissionId)
+            : [...prev.employees_permissions, permissionId]
+
+            return {
+                ...prev,
+                employees_permissions: updatePermission
+            }
+        })
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault()
         await fetch(`http://127.0.0.1:8000/api/employees/addEmployee/`, {
@@ -56,7 +78,8 @@ const AddEmployee = () => {
             body: JSON.stringify({
                 first_name: employee.first_name,
                 last_name: employee.last_name,
-                workable_positions: employee.workable_positions
+                workable_positions: employee.workable_positions,
+                employees_permissions: employee.employees_permissions
             })
         })
         navigate('/employees')
@@ -98,6 +121,20 @@ const AddEmployee = () => {
                             onChange={handleCheckboxChange}
                             />
                             <label htmlFor={`pos-${position.id}`}>{position.position_name}</label>
+                        </div>
+                    ))}
+                </div>
+                <div className="permission-checkbox">
+                    <h3>Permissions:</h3>
+                    {permissions.map(permission => (
+                        <div key={permission.id} className="checkbox-item">
+                            <input type="checkbox"
+                            id={`os-${permission.id}`}
+                            value = {permission.id}
+                            checked={employee.employees_permissions.includes(permission.id)}
+                            onChange={handleCheckboxChangePermission}
+                            />
+                            <label htmlFor={`pos-${permission.id}`}>{permission.permission_name}</label>
                         </div>
                     ))}
                 </div>
