@@ -4,9 +4,10 @@
     left: 0%;
     width: 100%;
     height: 70px;
-    background-color: #007893;
-    color: #CEBA46;
+    background-color: #1c5da2;
+    color: rgb(189, 165, 13);
     text-align: left;
+    z-index: 2;
 }
 
 .navbar h1{

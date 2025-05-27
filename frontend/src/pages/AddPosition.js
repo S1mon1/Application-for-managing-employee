@@ -87,8 +87,9 @@ const AddPosition = () => {
                         required
                     />
                 </div>
-                <div className="permission-checkbox">
+                <div className="permissions-section">
                     <h3>Permissions:</h3>
+                    <div className="permission-checkbox">
                     {permissions.map(permission => (
                         <div key={permission.id} className="checkbox-item">
                             <input type="checkbox"
@@ -100,6 +101,7 @@ const AddPosition = () => {
                             <label htmlFor={`pos-${permission.id}`}>{permission.permission_name}</label>
                         </div>
                     ))}
+                    </div>
                 </div>
                 <button type="submit">Add Position</button>
             </form>

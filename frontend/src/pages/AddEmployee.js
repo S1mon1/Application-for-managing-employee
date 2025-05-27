@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
+import "./AddEmployee.css"
 
 const AddEmployee = () => {
 
@@ -12,6 +13,7 @@ const AddEmployee = () => {
         employees_permissions: []
     })
 
+    const [errors, setErrors] = useState({})
     const [positions, setPositions] = useState([])
     const [permissions, setPermissions] = useState([])
     const navigate = useNavigate()
@@ -70,6 +72,21 @@ const AddEmployee = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
+
+        const newErrors = {}
+        if (!employee.first_name.trim()) {
+          newErrors.first_name = true
+        }
+        if (!employee.last_name.trim()) {
+          newErrors.last_name = true
+        }
+        
+        setErrors(newErrors)
+
+        if (Object.keys(newErrors).length > 0) {
+          return
+        }
+
         await fetch(`http://127.0.0.1:8000/api/employees/addEmployee/`, {
             method: 'POST',
             headers: {
@@ -90,28 +107,33 @@ const AddEmployee = () => {
             <Navbar headerText={"New Employee"}/>
             <Sidebar/>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Name: </label>
+                <div className={`input-container ${errors.first_name ? 'error' : ''}`}>
+                    <label>Name</label>
                     <input
                         type="text"
                         name="first_name"
                         value={employee.first_name}
                         onChange={handleInputChange}
-                        required
                     />
+                    {errors.first_name && (
+                      <span className='error-message'>This field is required</span>
+                    )}
                 </div>
-                <div>
+                <div className={`input-container ${errors.last_name ? 'error' : ''}`}>
                     <label>Last name:</label>
                     <input
                         type="text"
                         name="last_name"
                         value={employee.last_name}
-                        onChange={handleInputChange}
-                        required
+                        onChange={handleCheckboxChange}
                     />
+                    {errors.last_name && (
+                      <span className='error-message'>This field is required</span>
+                    )}
                 </div>
-                <div className="position-checkbox">
+                <div className="positions-section">
                     <h3>Positions:</h3>
+                    <div className="position-checkbox">
                     {positions.map(position => (
                         <div key={position.id} className="checkbox-item">
                             <input type="checkbox"
@@ -123,9 +145,11 @@ const AddEmployee = () => {
                             <label htmlFor={`pos-${position.id}`}>{position.position_name}</label>
                         </div>
                     ))}
+                    </div>
                 </div>
-                <div className="permission-checkbox">
+                <div className="permissions-section">
                     <h3>Permissions:</h3>
+                    <div className="permission-checkbox">
                     {permissions.map(permission => (
                         <div key={permission.id} className="checkbox-item">
                             <input type="checkbox"
@@ -137,6 +161,7 @@ const AddEmployee = () => {
                             <label htmlFor={`pos-${permission.id}`}>{permission.permission_name}</label>
                         </div>
                     ))}
+                    </div>
                 </div>
                 <button type="submit">Add Employee</button>
             </form>
