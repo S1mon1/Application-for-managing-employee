@@ -48,6 +48,10 @@ const Employee = ({match}) => {
                             <span>Permissions</span>
                             <span>{employee?.employees_permissions?.map(pos => pos.permission_name).join(', ')}</span>
                         </div>
+                        <div className='detail-row'>
+                            <span>Comments</span>
+                            <span>{employee?.comments}</span>
+                        </div>
                     </div>
 
                     <div className='button-container'>

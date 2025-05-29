@@ -139,6 +139,15 @@ const UpdateEmployee = () => {
                     ))}
                     </div>
                 </div>
+                <div>
+                    <label>Comments</label>
+                    <textarea
+                        type="text"
+                        name="comments"
+                        value={employee.comments}
+                        onChange={handleInputChange}
+                        />
+                </div>
                 <button type="submit">Save</button>
             </form>
 

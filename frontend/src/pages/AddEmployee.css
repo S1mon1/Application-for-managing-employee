@@ -95,6 +95,11 @@ button[type="submit"]:focus {
   margin-bottom: 10px;
 }
 
+.input-container-comments {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
 .input-container.error input {
   border-color: #dc3545 !important;
   border-width: 2px;

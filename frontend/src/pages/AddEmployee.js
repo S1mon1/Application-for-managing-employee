@@ -10,7 +10,8 @@ const AddEmployee = () => {
         first_name: '',
         last_name: '',
         workable_positions: [],
-        employees_permissions: []
+        employees_permissions: [],
+        comments: ''
     })
 
     const [errors, setErrors] = useState({})
@@ -96,7 +97,8 @@ const AddEmployee = () => {
                 first_name: employee.first_name,
                 last_name: employee.last_name,
                 workable_positions: employee.workable_positions,
-                employees_permissions: employee.employees_permissions
+                employees_permissions: employee.employees_permissions,
+                comments: employee.comments
             })
         })
         navigate('/employees')
@@ -162,6 +164,15 @@ const AddEmployee = () => {
                         </div>
                     ))}
                     </div>
+                </div>
+                <div className='input-container-comments'>
+                    <label>Comments</label>
+                    <textarea
+                        type="text"
+                        name="comments"
+                        value={employee.comments}
+                        onChange={handleInputChange}
+                    />
                 </div>
                 <button type="submit">Add Employee</button>
             </form>
