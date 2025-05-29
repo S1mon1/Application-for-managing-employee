@@ -4,15 +4,18 @@ from django.db import models
 
 class Permission(models.Model):
     permission_name = models.CharField(max_length=100)
+    description = models.TextField(null=True, blank=True)
+    comments = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.permission_name
 
 class Position(models.Model):
     position_name = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     required_permissions = models.ManyToManyField(Permission, related_name='required_by_positions', null=True, blank=True)
     history = models.ManyToManyField('self', through='PositionEmployees')
+    comments = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.position_name
@@ -23,6 +26,7 @@ class Employee(models.Model):
     employees_permissions = models.ManyToManyField(Permission, through='EmployeePermissions', null=True, blank=True)
     workable_positions = models.ManyToManyField(Position, related_name='employees', null=True, blank=True)
     position_history = models.ManyToManyField('self', through='PositionEmployees')
+    comments = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
