@@ -30,22 +30,22 @@ const Employee = ({match}) => {
                 <div className='content-wrapper'>
                     <div className='details-list'>
                         <div className='detail-row'>
-                            <span>First name:</span>
+                            <span>First name</span>
                             <span>{employee?.first_name}</span>
                         </div>
 
                         <div className='detail-row alternate-bg'>
-                            <span>Last name:</span>
+                            <span>Last name</span>
                             <span>{employee?.last_name}</span>
                         </div>
 
                         <div className='detail-row'>
-                            <span>Positions:</span>
+                            <span>Positions</span>
                             <span>{employee?.workable_positions?.map(pos => pos.position_name).join(', ')}</span>
                         </div>
 
                         <div className='detail-row alternate-bg'>
-                            <span>Permissions:</span>
+                            <span>Permissions</span>
                             <span>{employee?.employees_permissions?.map(pos => pos.permission_name).join(', ')}</span>
                         </div>
                     </div>
