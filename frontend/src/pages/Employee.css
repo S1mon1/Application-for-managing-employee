@@ -9,3 +9,59 @@
     flex-direction: column;
     gap: 1rem;
 }
+
+.content-wrapper {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.detail-row {
+  display: flex;
+  padding: 12px;
+  border-bottom: 1px solid #d1cdcd;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.detail-row span:first-child {
+  width: 120px;
+  font-weight: bold;
+  text-align: right;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.detail-row span:last-child {
+  flex-grow: 1;
+  margin-left: 20px;
+  text-align: left;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+
+.alternate-bg {
+  background-color: #f8f9fa;
+}
+
+.button-container {
+  display: flex;
+  gap: 20px;
+  max-width: 400px;
+  padding: 0 20px;
+  margin: 20px auto 0;
+  justify-content: center;
+}

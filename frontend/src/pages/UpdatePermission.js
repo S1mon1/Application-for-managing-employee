@@ -54,7 +54,7 @@ const UpdatePermission = () => {
                         required
                     />
                 </div>
-                <button type="submit">Zapisz zmiany</button>
+                <button type="submit">Save</button>
             </form>
 
         </div>

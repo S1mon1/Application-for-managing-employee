@@ -27,12 +27,34 @@ const Employee = ({match}) => {
             <Navbar headerText={"Employee"}/>
             <Sidebar/>
             <div className="main-container">
-                <p>{employee?.first_name}</p>
-                <p>{employee?.last_name}</p>
-                <p>{employee?.workable_positions?.map(pos => pos.position_name).join(', ')}</p>
-                <p>{employee?.employees_permissions?.map(pos => pos.permission_name).join(', ')}</p>
-                <EmployeeUpdateButton/>
-                <DeleteButton deletePath={`http://127.0.0.1:8000/api/employee/${employeeId}/delete`} pathUrl="/employees"/>
+                <div className='content-wrapper'>
+                    <div className='details-list'>
+                        <div className='detail-row'>
+                            <span>First name:</span>
+                            <span>{employee?.first_name}</span>
+                        </div>
+
+                        <div className='detail-row alternate-bg'>
+                            <span>Last name:</span>
+                            <span>{employee?.last_name}</span>
+                        </div>
+
+                        <div className='detail-row'>
+                            <span>Positions:</span>
+                            <span>{employee?.workable_positions?.map(pos => pos.position_name).join(', ')}</span>
+                        </div>
+
+                        <div className='detail-row alternate-bg'>
+                            <span>Permissions:</span>
+                            <span>{employee?.employees_permissions?.map(pos => pos.permission_name).join(', ')}</span>
+                        </div>
+                    </div>
+
+                    <div className='button-container'>
+                        <EmployeeUpdateButton/>
+                        <DeleteButton deletePath={`http://127.0.0.1:8000/api/employee/${employeeId}/delete`} pathUrl={"/employees"}/>
+                    </div>
+                </div>
             </div>
         </div>
     )

@@ -66,7 +66,7 @@ const UpdatePosition = () => {
             <Sidebar/>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Stanowisko:</label>
+                    <label>Position:</label>
                     <input
                         type="text"
                         name="position_name"
@@ -76,7 +76,7 @@ const UpdatePosition = () => {
                     />
                 </div>
                 <div>
-                    <label>Opis stanowiska:</label>
+                    <label>Description:</label>
                     <input
                         type="text"
                         name="description"
@@ -85,10 +85,11 @@ const UpdatePosition = () => {
                         required
                     />
                 </div>
-                <div className='permission-section'>
+                <div className="permissions-section">
                     <h3>Permissions:</h3>
+                    <div className="permission-checkbox">
                     {permissions.map(permission => (
-                        <div key={permission.id} className='persmission-item'>
+                        <div key={permission.id} className='checkbox-item'>
                             <input
                             type="checkbox"
                             id={`permission-${permission.id}`}
@@ -100,6 +101,7 @@ const UpdatePosition = () => {
                             </label>
                         </div>
                     ))}
+                    </div>
                 </div>
                 <button type="submit">Save</button>
             </form>
