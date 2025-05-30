@@ -6,7 +6,9 @@ import Sidebar from '../components/Sidebar'
 const AddPermission = () => {
 
     const [permission, setPermission] = useState({
-        permission_name:''
+        permission_name:'',
+        description: '',
+        comments: ''
     })
 
     const navigate = useNavigate()
@@ -27,7 +29,9 @@ const AddPermission = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                permission_name: permission.permission_name
+                permission_name: permission.permission_name,
+                description: permission.description,
+                comments: permission.comments
             })
         })
         navigate('/permissions')
@@ -46,6 +50,24 @@ const AddPermission = () => {
                         value={permission.permission_name}
                         onChange={handleInputChange}
                         required
+                    />
+                </div>
+                <div>
+                    <label>Description</label>
+                    <input
+                        type="text"
+                        name="description"
+                        value={permission.description}
+                        onChange={handleInputChange}
+                    />
+                </div>
+                <div>
+                    <label>Comments</label>
+                    <textarea
+                        type="text"
+                        name="comments"
+                        value={permission.comments}
+                        onChange={handleInputChange}
                     />
                 </div>
                 <button type="submit">Add Permission</button>

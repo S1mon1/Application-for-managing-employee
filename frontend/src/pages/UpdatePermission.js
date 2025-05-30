@@ -54,6 +54,24 @@ const UpdatePermission = () => {
                         required
                     />
                 </div>
+                <div>
+                    <label>Description</label>
+                    <input
+                        type="text"
+                        name="description"
+                        value={permission.description}
+                        onChange={handleInputChange}
+                    />
+                </div>
+                <div>
+                    <label>Comments</label>
+                    <textarea
+                        type="text"
+                        name="comments"
+                        value={permission.comments}
+                        onChange={handleInputChange}
+                    />
+                </div>
                 <button type="submit">Save</button>
             </form>
 

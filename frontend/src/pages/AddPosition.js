@@ -86,7 +86,6 @@ const AddPosition = () => {
                         name="description"
                         value={position.description}
                         onChange={handleInputChange}
-                        required
                     />
                 </div>
                 <div className="permissions-section">

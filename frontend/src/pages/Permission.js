@@ -25,7 +25,22 @@ const Permission = ({}) => {
             <Navbar headerText={"Permission"}/>
             <Sidebar/>
             <div className="main-container">
-                <p>{permission?.permission_name}</p>
+                <div className='content-wrapper'>
+                    <div className='details-list'>
+                        <div className='detail-row'>
+                            <span>Permission</span>
+                            <span>{permission?.permission_name}</span>
+                        </div>
+                        <div className='detail-row alternate-bg'>
+                            <span>Description</span>
+                            <span>{permission?.description}</span>
+                        </div>
+                        <div className='detail-row'>
+                            <span>Comments</span>
+                            <span>{permission?.comments}</span>
+                        </div>
+                    </div>
+                </div>
                 <PermissionUpdateButton/>
                 <DeleteButton deletePath={`http://127.0.0.1:8000/api/permissions/${permissionId}/delete/`} pathUrl="/permissions"/>
                 
