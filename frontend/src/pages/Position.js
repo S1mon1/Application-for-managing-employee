@@ -39,6 +39,10 @@ const Position = ({}) => {
                             <span>Permissions (required)</span>
                             <span>{position?.required_permissions?.map(per => per.permission_name).join(', ')}</span>
                         </div>
+                        <div className='detail-row'>
+                            <span>Comments</span>
+                            <span>{position?.comments}</span>
+                        </div>
                     </div>
                     <div className='button-container'>
                         <PositionUpdateButton/>

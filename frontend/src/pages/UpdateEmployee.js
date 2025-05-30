@@ -139,7 +139,7 @@ const UpdateEmployee = () => {
                     ))}
                     </div>
                 </div>
-                <div>
+                <div className='input-container-comments'>
                     <label>Comments</label>
                     <textarea
                         type="text"

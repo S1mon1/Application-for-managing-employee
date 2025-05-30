@@ -28,7 +28,7 @@ input[type="text"]:focus {
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
-.positions-section, .permissions-section {
+.positions-section, .permissions-section, .input-container-comments {
   border-top: 1px solid #eee;
   padding-top: 1rem;
   margin-top: 1rem;
@@ -95,11 +95,6 @@ button[type="submit"]:focus {
   margin-bottom: 10px;
 }
 
-.input-container-comments {
-  border-top: 1px solid #eee;
-  padding-top: 1rem;
-  margin-top: 1rem;
-}
 .input-container.error input {
   border-color: #dc3545 !important;
   border-width: 2px;

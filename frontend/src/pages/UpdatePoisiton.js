@@ -103,6 +103,15 @@ const UpdatePosition = () => {
                     ))}
                     </div>
                 </div>
+                <div className='input-container-comments'>
+                    <label>Comments</label>
+                    <textarea
+                        type="text"
+                        name="comments"
+                        value={position.comments}
+                        onChange={handleInputChange}
+                    />
+                </div>
                 <button type="submit">Save</button>
             </form>
 

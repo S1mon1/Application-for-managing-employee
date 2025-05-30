@@ -8,7 +8,8 @@ const AddPosition = () => {
     const [position, setPosition] = useState({
         position_name: '',
         description: '',
-        required_permissions: []
+        required_permissions: [],
+        comments: ''
     })
 
     const [permissions, setPermissions] = useState([])
@@ -56,7 +57,8 @@ const AddPosition = () => {
             body: JSON.stringify({
                 position_name: position.position_name,
                 description: position.description,
-                required_permissions: position.required_permissions
+                required_permissions: position.required_permissions,
+                comments: position.comments
             })
         })
         navigate('/positions')
@@ -102,6 +104,15 @@ const AddPosition = () => {
                         </div>
                     ))}
                     </div>
+                </div>
+                <div className='input-container-comments'>
+                    <label>Comments</label>
+                    <textarea
+                        type="text"
+                        name="comments"
+                        value={position.comments}
+                        onChange={handleInputChange}
+                    />
                 </div>
                 <button type="submit">Add Position</button>
             </form>
