@@ -12,6 +12,8 @@ const Sidebar = () => {
         <Link to={`/positions/addPosition`} className='addElement'>Add Position</Link>
         <Link to={`/permissions/`}>Permissions</Link>
         <Link to={`/permissions/addPermission/`} className='addElement'>Add Permission</Link>
+        <Link to={`/employeesposition/`}>Employees Position</Link>
+        <Link to={`/employeesposition/AddEmployeesPosition`} className='addElement'>Add Employees Position</Link>
       </div>
     </aside>
   )
