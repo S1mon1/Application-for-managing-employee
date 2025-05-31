@@ -17,6 +17,7 @@ import UpdatePermission from "./pages/UpdatePermission"
 import AddEmployee from "./pages/AddEmployee"
 import AddPermission from "./pages/AddPermission"
 import AddPosition from "./pages/AddPosition"
+import EmployeesPosition from "./pages/EmployeesPosition";
 
 
 function App() {
@@ -40,6 +41,8 @@ function App() {
           <Route path="/permissions/:id" element={<Permission/>}/>
           <Route path="/permissions/:id/updatePermission" element={<UpdatePermission/>}/>
           <Route path="/permissions/addPermission" element={<AddPermission/>}/>
+
+          <Route path="/employeesposition" element={<EmployeesPosition/>}/>
         </Routes>
       </div>
     </Router>

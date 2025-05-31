@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .models import Employee
-from .serializers import EmployeeSerializer
+from .models import Employee, PositionEmployees
+from .serializers import EmployeeSerializer, EmployeesPositionSerializer
 from .models import Position, Permission
 from .serializers import PositionSerializer, PermissionSerializer
 from rest_framework import status
@@ -182,3 +182,12 @@ def deletePermission(request, pk):
     permission = Permission.objects.get(id=pk)
     permission.delete()
     return Response(status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET'])
+def getEmployeesPosition(request):
+    try:
+        employeesposition = PositionEmployees.objects.all()
+        serializer = EmployeesPositionSerializer(instance=employeesposition, many=True)
+        return Response(serializer.data)
+    except Exception as e:
+        return Response(status.HTTP_500_INTERNAL_SERVER_ERROR)

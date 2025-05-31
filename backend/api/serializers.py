@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from .models import Employee, Position, Permission
+from .models import Employee, Position, Permission, PositionEmployees
 
 class PermissionSerializer(ModelSerializer):
     class Meta:
@@ -19,4 +19,12 @@ class EmployeeSerializer(ModelSerializer):
 
     class Meta:
         model = Employee
+        fields = '__all__'
+
+class EmployeesPositionSerializer(ModelSerializer):
+    position = PositionSerializer(read_only=True)
+    assigned_to = EmployeeSerializer(read_only=True)
+
+    class Meta:
+        model = PositionEmployees
         fields = '__all__'

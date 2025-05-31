@@ -27,6 +27,7 @@ class Employee(models.Model):
     workable_positions = models.ManyToManyField(Position, related_name='employees', null=True, blank=True)
     position_history = models.ManyToManyField('self', through='PositionEmployees')
     comments = models.TextField(null=True, blank=True)
+    present = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
