@@ -191,3 +191,14 @@ def getEmployeesPosition(request):
         return Response(serializer.data)
     except Exception as e:
         return Response(status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+@api_view(['POST'])
+def addEmployeePosition(request):
+    serializer = EmployeesPositionSerializer(data=request.data, many=True)
+
+    if serializer.is_valid():
+        
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

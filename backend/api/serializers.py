@@ -22,8 +22,6 @@ class EmployeeSerializer(ModelSerializer):
         fields = '__all__'
 
 class EmployeesPositionSerializer(ModelSerializer):
-    position = PositionSerializer(read_only=True)
-    assigned_to = EmployeeSerializer(read_only=True)
 
     class Meta:
         model = PositionEmployees

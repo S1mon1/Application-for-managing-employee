@@ -41,7 +41,7 @@ class EmployeePermissions(models.Model):
 
 class PositionEmployees(models.Model):
     position = models.ForeignKey(Position, on_delete=models.CASCADE)
-    assigned_to = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    assigned_to = models.ForeignKey(Employee, on_delete=models.CASCADE, null=True, blank=True)
     start_date = models.DateField(auto_now_add=True)
 
     def delete(self, *args, **kwargs):
