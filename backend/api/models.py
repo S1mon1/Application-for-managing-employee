@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 class Permission(models.Model):
     permission_name = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
@@ -14,7 +12,7 @@ class Position(models.Model):
     position_name = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     required_permissions = models.ManyToManyField(Permission, related_name='required_by_positions', null=True, blank=True)
-    history = models.ManyToManyField('self', through='PositionEmployees')
+    history = models.ManyToManyField('self', through='PositionEmployees', related_name='employees')
     comments = models.TextField(null=True, blank=True)
 
     def __str__(self):
@@ -43,19 +41,3 @@ class PositionEmployees(models.Model):
     position = models.ForeignKey(Position, on_delete=models.CASCADE)
     assigned_to = models.ForeignKey(Employee, on_delete=models.CASCADE, null=True, blank=True)
     start_date = models.DateField(auto_now_add=True)
-
-    def delete(self, *args, **kwargs):
-        if self.assigned_to.position_history.count() >= 12:
-            oldest_entry = self.assigned_to.position_history.first()
-            if oldest_entry:
-                oldest_entry.delete()
-
-        if self.position.history.count() >= 12:
-            oldest_entry = self.position.history.first()
-            if oldest_entry:
-                oldest_entry.delete()
-
-        super().delete(*args, **kwargs)
-    
-    def __str__(self):
-        return f"{self.position}: {self.assigned_to}"

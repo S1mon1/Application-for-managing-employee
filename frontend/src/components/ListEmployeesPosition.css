@@ -1,0 +1,36 @@
+
+.employee-position-item {
+    margin: 10px 0;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    width: 400px;
+    margin-left: 150px;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.employee-position-item p {
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #333333;
+    line-height: 1.4;
+
+    &:first-child {
+        font-weight: 600;
+        color: #2196f3;
+    }
+
+    &:nth-child(2) {
+        color: #666666;
+    }
+
+    &:last-child {
+        font-style: italic;
+        color: #999999;
+    }
+}

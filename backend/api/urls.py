@@ -23,5 +23,6 @@ urlpatterns = [
     path('permissions/<str:pk>/delete/', views.deletePermission, name="delete-permission"),
 
     path('employeesposition/', views.getEmployeesPosition, name="employeeposition"),
-    path('employeespositions/add/', views.addEmployeePosition, name="addemployeeposition")
+    path('employeespositions/add/', views.addEmployeePosition, name="addemployeeposition"),
+    path('employeespositions/delete/<str:pk>/', views.deleteEmployeePosition, name="delete-employees-position"),
 ]

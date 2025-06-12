@@ -16,12 +16,11 @@ const EmployeesPosition = () => {
         const data = await response.json()
         setEmployeesPosition(data)
     }
-
     return (
         <div className="main-container">
             <Navbar headerText={"Employees Position"}/>
             <Sidebar/>
-            <div className="main-container">
+            <div>
                 {employeesposition.map((employeeposition, index) => (
                     <ListEmployeesPosition key={index} employeeposition = {employeeposition}/>
                 ))}

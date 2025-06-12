@@ -9,6 +9,7 @@ const AddEmployeesPosition = () => {
 
     const [employees, setEmployees] = useState([])
     const [positions, setPositions] = useState([])
+    const [employeepositions, setEmployeePositions] = useState([])
     const [selectedAssignments, setSelectedAssignments] = useState({})
 
     const navigate = useNavigate()
@@ -26,8 +27,15 @@ const AddEmployeesPosition = () => {
             setPositions(dataPosition)
         }
 
+        const fetchEmployeePositions = async () => {
+            const response = await fetch(`http://127.0.0.1:8000/api/employeesposition/`)
+            const dataEmployeesPosition = await response.json()
+            setEmployeePositions(dataEmployeesPosition)
+        }
+
         fetchEmployees()
         fetchPositions()
+        fetchEmployeePositions()
     }, [])
 
     const handleEmployeeChange = (positionId, employeeId) => {
@@ -40,12 +48,20 @@ const AddEmployeesPosition = () => {
     const handleSubmit = async (event) => {
         event.preventDefault()
 
+        for (const position of employeepositions) {
+            await fetch(`http://127.0.0.1:8000/api/employeespositions/delete/${position.id}/`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+        }
+
         const assignments = Object.entries(selectedAssignments).filter(
             ([_, employeeId]) => employeeId !== ""
             ).map(([positionId, employeeId]) => ({
                 position: parseInt(positionId),
-                assigned_to: parseInt(employeeId),
-                start_date: new Date().toISOString().split('T')[0]
+                assigned_to: parseInt(employeeId)
             }))
 
             await fetch('http://127.0.0.1:8000/api/employeespositions/add/', {

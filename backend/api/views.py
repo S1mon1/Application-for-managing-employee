@@ -8,8 +8,6 @@ from .models import Position, Permission
 from .serializers import PositionSerializer, PermissionSerializer
 from rest_framework import status
 
-
-# Create your views here.
 @api_view(['GET'])
 def getRoutes(request):
 
@@ -202,3 +200,15 @@ def addEmployeePosition(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def deleteEmployeePosition(request, pk):
+    try:
+        employeesposition = PositionEmployees.objects.get(id=pk)
+        employeesposition.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    except Position.DoesNotExist:
+        return Response("Position not found", status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        return Response(f"Error: {str(e)}", status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    

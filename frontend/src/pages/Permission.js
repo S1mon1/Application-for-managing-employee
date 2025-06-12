@@ -41,9 +41,10 @@ const Permission = ({}) => {
                         </div>
                     </div>
                 </div>
-                <PermissionUpdateButton/>
-                <DeleteButton deletePath={`http://127.0.0.1:8000/api/permissions/${permissionId}/delete/`} pathUrl="/permissions"/>
-                
+                <div className='button-container'>
+                    <PermissionUpdateButton/>
+                    <DeleteButton deletePath={`http://127.0.0.1:8000/api/permissions/${permissionId}/delete/`} pathUrl="/permissions"/>
+                </div>
             </div>
         </div>
     )

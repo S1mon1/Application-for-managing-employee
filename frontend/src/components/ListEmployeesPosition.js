@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./ListEmployeesPosition.css"
 
 
 const ListEmployeesPosition = ({employeeposition}) => {
@@ -27,7 +28,7 @@ const ListEmployeesPosition = ({employeeposition}) => {
     const position = positions.find(p => p.id === employeeposition.position)
 
     return (
-        <div className="employee-position-item">
+        <div className="employee-position-item">          
             <p>Position: {position?.position_name}</p>
             <p>Employee: {employee?.first_name} {employee?.last_name}</p>
             <p>Assigment date: {employeeposition.start_date}</p>

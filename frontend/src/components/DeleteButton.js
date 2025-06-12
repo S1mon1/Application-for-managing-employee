@@ -16,7 +16,7 @@ const DeleteButton = ({ deletePath, pathUrl }) => {
                 }
             })
             if (!response.ok){
-                throw new Error("Nie usunięto")
+                throw new Error("Not deleted")
             }
         
         navigate(pathUrl)
