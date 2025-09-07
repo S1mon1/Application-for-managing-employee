@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 urlpatterns = [
     path('', views.getRoutes, name="routes"),
@@ -25,4 +26,7 @@ urlpatterns = [
     path('employeesposition/', views.getEmployeesPosition, name="employeeposition"),
     path('employeespositions/add/', views.addEmployeePosition, name="addemployeeposition"),
     path('employeespositions/delete/<str:pk>/', views.deleteEmployeePosition, name="delete-employees-position"),
+
+    path('register/', views.Register, name='register'),
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair')
 ]

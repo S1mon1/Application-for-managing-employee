@@ -8,6 +8,8 @@
   color: white;
   overflow-y: auto;
   text-align: left;
+  transition: left 0.5s ease;
+  z-index: 1000;
 }
 
 .sidebar h3{
@@ -26,6 +28,7 @@
   text-decoration: none;
   margin-left: 30px;
   transition: opacity 0.2s ease;
+  cursor: pointer;
 }
 .links a:hover {
   opacity: 0.5;
@@ -35,3 +38,70 @@
   font-size: 11px;
   margin-bottom: 20px;
 }
+
+.sidebar.hamburger-active {
+    left: -250px;
+}
+
+.hamburger-button {
+    position: fixed;
+    top: 10px;
+    left: 0px;
+    z-index: 1000;
+    padding: 10px;
+    background-color: #1c5da2;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: none;
+    font-size: 25px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5 ease;
+    z-index: 999;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.logoutButton button {
+    position: relative;
+    margin-left: 50px;
+    bottom: 10%;
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: calc(100vh - 70px);
+        left: -100vw;
+    }
+
+    .sidebar.hamburger-active {
+        left: 0;
+    }
+
+    .hamburger-button {
+        display: block;
+    }
+
+    .links {
+        margin-left: 20px;
+    }
+
+    .addElement {
+        font-size: 14px;
+    }
+}
+

@@ -13,3 +13,11 @@
 .navbar h1{
     margin-left: 30px;
 }
+
+@media screen and (max-width: 767px) {
+    .navbar h1{
+        margin: 0;
+        text-align: center;
+        margin-top: 20px;
+    }
+}
